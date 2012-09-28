@@ -47,7 +47,7 @@ class ModelCache
 	 */
 	public static function get($class, $pk) {
 		global $tp_options;
-		return $tp_options["enable_cache"] == true && isset(ModelCache::$_cache[$class][$pk]) ? ModelCache::$_cache[$class][$pk] : null;
+		return $tp_options["enable_modelcache"] == true && isset(ModelCache::$_cache[$class][$pk]) ? ModelCache::$_cache[$class][$pk] : null;
 	}
 
 	/**

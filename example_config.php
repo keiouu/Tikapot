@@ -31,6 +31,7 @@ $tp_options = array(
 	/* The following are used by TPCache */
 	"enable_cache" => true,
 	"cache_prefix" => "tp",
+	"enable_modelcache" => false,
 );
 
 /* Databases */
