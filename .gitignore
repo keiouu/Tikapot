@@ -1,0 +1,12 @@
+config.php
+push
+makedoc
+docs
+.project
+.settings
+media/cache/*
+.htaccess
+tikapot.sublime*
+.phptidy-cache
+contrib/*
+contrib/

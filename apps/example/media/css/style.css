@@ -1,0 +1,36 @@
+body {
+	background-color: #EEE;
+	color: #444;
+	font-family: "helvetica neue", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 12px;
+}
+
+h1 {
+	text-shadow: #EEE 1px 1px 1px;
+}
+
+a {
+	color: #444;
+}
+
+a:hover {
+	color: #000;
+}
+
+#content {
+	width: 460px;
+	height: 460px;
+	border-radius: 45px;
+	background-color: #FFF;
+	border: 1px dashed #999;
+	padding: 20px;
+	text-align: center;
+	margin: 100px auto 0 auto;
+	box-shadow: 3px 3px 2px #CCC;
+}
+
+.menu {
+	list-style: none;
+	padding-left: 0;
+}
+
