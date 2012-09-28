@@ -131,7 +131,6 @@ class Form
 		} else {
 			// If we alredy have a csrf, invalidate it
 			if ($this->csrf !== null) {
-				print $this->csrf;
 				$_SESSION["tprequesttokens"] = array_diff($_SESSION["tprequesttokens"], array($this->csrf));
 				$_SESSION["tprequesttokens"] = array_values($_SESSION["tprequesttokens"]);
 			}
