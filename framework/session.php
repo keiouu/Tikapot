@@ -14,6 +14,17 @@
 class Session
 {
 	/**
+	 * Start a new session
+	 */
+	public static function start() {
+		// Set session options
+		$currentCookieParams = session_get_cookie_params(); 
+		session_set_cookie_params($currentCookieParams["lifetime"], home_url, $currentCookieParams["domain"], $currentCookieParams["secure"], $currentCookieParams["httponly"]);
+
+		session_start();
+	}
+
+	/**
 	 * Store val in session under var, overwrites if necessary.
 	 *
 	 * @static

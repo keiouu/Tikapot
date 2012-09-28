@@ -14,6 +14,7 @@ set_error_handler("tpErrorHandler");
 
 require_once(home_dir . "framework/utils.php");
 require_once(home_dir . "framework/tpcache.php");
+require_once(home_dir . "framework/session.php");
 
 if (defined("enable_session_handler") && enable_session_handler && TPCache::avaliable()) {
 	require_once(home_dir . "framework/session_handler.php");
@@ -30,7 +31,8 @@ if (defined("enable_session_handler") && enable_session_handler && TPCache::aval
 }
 
 ob_start();
-@session_start();
+
+Session::start();
 
 require_once(home_dir . "framework/profiler.php");
 Profiler::start("total");
