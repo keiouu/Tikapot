@@ -14,7 +14,7 @@ class FormException extends Exception {}
 
 class Form
 {
-	protected $action, $method, $form_id, $fieldsets = array(), $errors = array(), $model = false;
+	protected $action, $method, $form_id, $fieldsets = array(), $errors = array(), $model = false, /** Current CSRF token */ $csrf = null;
 	
 	/**
 	 * Data can be a model or an array of form fields
@@ -114,23 +114,34 @@ class Form
 	}
 	
 	protected function check_csrf($form_id, $token) {
-		return isset($_SESSION[$form_id]) && isset($_SESSION[$form_id]["csrf"]) && $_SESSION[$form_id]["csrf"] == $token;
+		return in_array($token, $_SESSION["tprequesttokens"]);
 	}
 	
 	protected function generate_control_block() {
+		list($id, $csrf) = $this->generate_csrf_token();
 		$this->fieldsets["control"] = new Fieldset("", array(), "control");
 		// CSRF token field
-		list($id, $csrf) = $this->generate_csrf_token();
 		$this->fieldsets["control"]["formid"] = new HiddenFormField("formid", $id);
 		$this->fieldsets["control"]["csrf"] = new HiddenFormField("csrf", $csrf);
 	}
 	
 	protected function generate_csrf_token() {
+		if (!isset($_SESSION["tprequesttokens"])) {
+			$_SESSION["tprequesttokens"] = array();
+		} else {
+			// If we alredy have a csrf, invalidate it
+			if ($this->csrf !== null) {
+				print $this->csrf;
+				$_SESSION["tprequesttokens"] = array_diff($_SESSION["tprequesttokens"], array($this->csrf));
+				$_SESSION["tprequesttokens"] = array_values($_SESSION["tprequesttokens"]);
+			}
+		}
+
 		$form_key = $this->get_form_id();
 		$token = md5(uniqid(rand(), true));
-		if (!isset($_SESSION[$form_key]))
-			$_SESSION[$form_key] = array();
-		$_SESSION[$form_key]["csrf"] = $token;
+		$this->csrf = $token;
+		$_SESSION["tprequesttokens"][] = $token;
+		
 		return array($form_key, $token);
 	}
 	
