@@ -314,6 +314,18 @@ class ModelQuery implements Iterator, Countable
 		$this->_count = $result[0];
 		return $result[0];
 	}
+
+	/**
+	 * Convert this query to JSON
+	 * 
+	 * @return string JSON representation of this modelquery
+	 */
+	public function toJSON() {
+		$array = array_map(function ($obj) {
+			return json_decode($obj->toJSON());
+		}, $this->all());
+		return json_encode($array);
+	}
 	
 	/* Returns the nth object in this query */
 	public function get($n = 0) {

@@ -295,6 +295,19 @@ abstract class Model
 			$this->from_db = True;
 		}
 	}
+
+	/**
+	 * Convert this model to JSON
+	 * 
+	 * @return string JSON representation of this model
+	 */
+	public function toJSON() {
+		$array = array();
+		foreach ($this->fields as $name => $field) {
+			$array[$name] = $field->get_value();
+		}
+		return json_encode($array);
+	}
 	
 	/**
 	 * See load_values(...)
