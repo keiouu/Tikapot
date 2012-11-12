@@ -13,7 +13,7 @@ class ModelQueryException extends Exception { }
 
 class ModelQuery implements Iterator, Countable
 {
-	private $_model, $_query, $_objects, $_count, $_has_run, $_built_queries, $_position, $_sanitized, $_using, $_table, $_can_cache;
+	private $_model, $_query, $_sanitized_query, $_objects, $_count, $_has_run, $_built_queries, $_position, $_sanitized, $_using, $_table, $_can_cache;
 	
 	/**
 	 * $query should conform to the following structure (each line optional):
@@ -148,12 +148,12 @@ class ModelQuery implements Iterator, Countable
 		$query = "";
 		$count = 0;
 		if (!$this->_sanitized) {
-			$this->_query = $this->sanitize_query($this->_query);
+			$this->_sanitized_query = $this->sanitize_query($this->_query);
 			$this->_sanitized = true;
 		}
 		$op = "AND";
 		$counting = starts_with($selection, "COUNT");
-		foreach ($this->_query as $clause => $criterion) {
+		foreach ($this->_sanitized_query as $clause => $criterion) {
 			if ($counting && ($clause === "ORDER BY" || $clause === "GROUP BY"))
 				continue;
 			if (is_array($criterion)) {
