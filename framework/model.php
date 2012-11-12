@@ -304,7 +304,11 @@ abstract class Model
 	public function toJSON() {
 		$array = array();
 		foreach ($this->fields as $name => $field) {
-			$array[$name] = $field->get_value();
+			$value = $field->get_value();
+			if ($value instanceof Model || $value instanceof ModelQuery) {
+				$value = json_decode($value->toJSON());
+			}
+			$array[$name] = $value;
 		}
 		return json_encode($array);
 	}
