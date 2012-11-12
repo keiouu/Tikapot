@@ -336,6 +336,31 @@ class ModelQuery implements Iterator, Countable
 		return $this->_objects[$n];
 	}
 	
+	/**
+	 * Returns the first element if it exists
+	 */
+	public function first() {
+		try {
+			$obj = $this->get(0);
+			return $obj;
+		} catch(Exception $e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Returns the last element if it exists
+	 */
+	public function last() {
+		$this->_ensure_run();
+		try {
+			$obj = $this->get(count($this->_objects) - 1);
+			return $obj;
+		} catch(Exception $e) {
+			return null;
+		}
+	}
+	
 	/* Returns all objects in this query optionally starting at the nth element */
 	public function all($n = 0) {
 		$this->_ensure_run();
