@@ -330,10 +330,12 @@ class ModelQuery implements Iterator, Countable
 	/* Returns the nth object in this query */
 	public function get($n = 0) {
 		$this->_ensure_run();
+
+		if (isset($this->_objects[$n])) {
+			return $this->_objects[$n];
+		}
 		
-		if (count($this->_objects) < $n || $n < 0)
-			throw new ModelQueryException($GLOBALS['i18n']['framework']["warn1"] . " $n " . $GLOBALS['i18n']['framework']["mqerr3"]);
-		return $this->_objects[$n];
+		throw new ModelQueryException($GLOBALS['i18n']['framework']["warn1"] . " $n " . $GLOBALS['i18n']['framework']["mqerr3"]);
 	}
 	
 	/**
