@@ -213,7 +213,7 @@ class ModelQuery implements Iterator, Countable
 		}
 		
 		$table_name = $this->_table === "" ? $this->_model->get_table_name() : $this->_table;
-		$this->_built_queries[$selection] = "SELECT $selection FROM \"" . $table_name . "\"$query".($limit > 0 ? " LIMIT $limit" : "").($offset > 0 ? " OFFSET $offset" : "").";";
+		$this->_built_queries[$selection] = "SELECT $selection FROM \"" . $table_name . "\"$query".(!$counting && $limit > 0 ? " LIMIT $limit" : "").(!$counting && $offset > 0 ? " OFFSET $offset" : "").";";
 		return $this->_built_queries[$selection];
 	}
 	
