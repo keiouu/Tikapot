@@ -18,6 +18,7 @@ new Default500();
 new i18nJSView("/tikapot/i18n.js");
 new CaptchaView("/tikapot/api/captcha/");
 new CaptchaVerificationView("/tikapot/api/captcha/verify/");
+new ThumbnailGeneratorView("/tikapot/api/thumbnail/");
 
 if (debug) {
 	new UpgradeView("/tikapot/upgrade/");

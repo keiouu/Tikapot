@@ -14,6 +14,7 @@ require_once(home_dir . "framework/views/upgrade.php");
 require_once(home_dir . "framework/views/template.php");
 require_once(home_dir . "framework/views/html.php");
 require_once(home_dir . "framework/views/static.php");
+require_once(home_dir . "framework/views/thumbnails.php");
 require_once(home_dir . "framework/views/404.php");
 require_once(home_dir . "framework/views/403.php");
 require_once(home_dir . "framework/views/500.php");
