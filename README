@@ -1,6 +1,7 @@
 Tikapot is a powerful PHP Web Application framework.
-
 See http://www.tikapot.com for more information and for tutorials!
+
+build.xml requires ant
 
 Apache:
      Rename _.htaccess ".htaccess"
