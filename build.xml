@@ -113,11 +113,7 @@
    <arg path="${basedir}/framework" />
   </exec>
  </target>
-
- <target name="phpdox" description="Generate API documentation using phpDox">
-  <exec executable="phpdox"/>
- </target>
-
+ 
  <target name="phpunit" description="Run unit tests with PHPUnit">
   <exec executable="phpunit" failonerror="true"/>
  </target>
