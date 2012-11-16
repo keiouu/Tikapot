@@ -10,3 +10,4 @@ tikapot.sublime*
 .phptidy-cache
 contrib/*
 contrib/
+cache.properties
