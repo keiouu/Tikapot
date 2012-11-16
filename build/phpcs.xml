@@ -10,13 +10,15 @@
  -->
  <description>Tikapot Code Standards v0.1</description>
 
- <!--
-    Include all sniffs in the PEAR standard. Note that the
-    path to the standard does not have to be specified as the
-    PEAR standard exists inside the PHP_CodeSniffer install
-    directory.
- -->
- <rule ref="PEAR"/>
+  <rule ref="Generic"><!-- run all of the Generic rules except these excludes -->
+
+    <!-- use tabs -->
+    <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+
+    <!-- Use lowercase true, false and null. -->
+    <exclude name="Generic.PHP.UpperCaseConstant"/>
+
+  </rule>
 
  <!--
     Include all sniffs in the Squiz standard except one. Note that
@@ -27,17 +29,7 @@
  -->
  <rule ref="Squiz">
   <exclude name="Squiz.PHP.CommentedOutCode"/>
-  <exclude name="Squiz.PHP.TabsUsed"/>
  </rule>
-
- <!--
-    Include some specific sniffs from the Generic standard.
-    Note again that the name of the sniff is the code that
-    PHP_CodeSniffer gives it.
- -->
- <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
- <rule ref="Generic.Commenting.Todo"/>
- <rule ref="Generic.ControlStructures.InlineControlStructure"/>
 
  <!--
     Here we are including a specific sniff but also changing
